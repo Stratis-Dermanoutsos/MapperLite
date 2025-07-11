@@ -1,0 +1,15 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{C49E31C2-2287-42EC-86B1-732AD1ED26F8}"
+    ProjectSection(SolutionItems) = preProject
+        Directory.Build.props = Directory.Build.props
+        Directory.Packages.props = Directory.Packages.props
+        .editorconfig = .editorconfig
+    EndProjectSection
+EndProject
+Global
+    GlobalSection(SolutionConfigurationPlatforms) = preSolution
+        Debug|Any CPU = Debug|Any CPU
+        Release|Any CPU = Release|Any CPU
+    EndGlobalSection
+EndGlobal
