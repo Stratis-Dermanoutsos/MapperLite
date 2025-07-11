@@ -1,6 +1,6 @@
 namespace MapperLite.Abstractions;
 
-public interface IUpdateDto<TSource>
+public interface IUpdateMapper<TSource>
     where TSource : class
 {
     TSource MergeWithSource(TSource source);

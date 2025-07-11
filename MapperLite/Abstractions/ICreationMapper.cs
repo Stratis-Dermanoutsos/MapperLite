@@ -1,6 +1,6 @@
 namespace MapperLite.Abstractions;
 
-public interface ICreateDto<out TSource>
+public interface ICreationMapper<out TSource>
     where TSource : class
 {
     TSource ToSource();
