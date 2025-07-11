@@ -282,7 +282,7 @@ dotnet_diagnostic.CA2327.severity = none
 dotnet_diagnostic.IDE0046.severity = none
 
 csharp_style_expression_bodied_lambdas = unset
-csharp_style_namespace_declarations = block_scoped:warning
+csharp_style_namespace_declarations = file_scoped:warning
 charset = unset
 end_of_line = unset
 insert_final_newline = unset
