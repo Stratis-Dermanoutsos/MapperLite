@@ -54,6 +54,34 @@ public class MapperConfiguration
             (Func<TSource, TDestination>)(src => src.ToSource());
     }
 
+    public Func<TSource, TDestination>? GetMap<TSource, TDestination>()
+    {
+        if (_mappings.TryGetValue((typeof(TSource), typeof(TDestination)), out var del)
+            && del is Func<TSource, TDestination> func)
+        {
+            return func;
+        }
+
+        return null;
+    }
+
+    public Func<TSource, TDestination, TDestination>? GetMapPartial<TSource, TDestination>()
+    {
+        if (_mappings.TryGetValue((typeof(TSource), typeof(TDestination)), out var del)
+            && del is Func<TSource, TDestination, TDestination> func)
+        {
+            return func;
+        }
+
+        return null;
+    }
+
+    public Delegate? GetMap(Type sourceType, Type destType)
+    {
+        _mappings.TryGetValue((sourceType, destType), out var del);
+        return del;
+    }
+
     /// <summary>
     /// Checks if a mapping from <typeparamref name="TSource"/> to <typeparamref name="TDestination"/> already exists.
     /// </summary>
