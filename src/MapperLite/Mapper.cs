@@ -4,7 +4,17 @@ namespace MapperLite;
 
 public class Mapper(MapperConfiguration config) : IMapper
 {
-    public TDestination Map<TDestination>(object source)
+    public IEnumerable<TDestination> MapMany<TDestination>(IEnumerable<object> source)
+        where TDestination : class
+    {
+        ArgumentNullException.ThrowIfNull(source);
+
+        var enumerable = source as object[] ?? [.. source];
+
+        return enumerable.Length == 0 ? [] : enumerable.Select(Map<TDestination>);
+    }
+
+    public TDestination Map<TDestination>(object? source)
         where TDestination : class
     {
         ArgumentNullException.ThrowIfNull(source);
@@ -26,10 +36,19 @@ public class Mapper(MapperConfiguration config) : IMapper
                ?? throw new InvalidOperationException($"Mapping from {sourceType} to {typeof(TDestination)} returned null.");
     }
 
-    public TDestination Map<TSource, TDestination>(TSource source)
+    public IEnumerable<TDestination> MapMany<TSource, TDestination>(IEnumerable<TSource> source)
         where TSource : class
         where TDestination : class
     {
+        return source.Select(Map<TSource, TDestination>);
+    }
+
+    public TDestination Map<TSource, TDestination>(TSource? source)
+        where TSource : class
+        where TDestination : class
+    {
+        ArgumentNullException.ThrowIfNull(source);
+
         var mapFunc = config.GetMap<TSource, TDestination>()
                       ?? throw new InvalidOperationException($"No mapping found from {typeof(TSource)} to {typeof(TDestination)}.");
 
