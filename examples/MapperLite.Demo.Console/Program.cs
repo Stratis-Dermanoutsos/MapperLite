@@ -6,13 +6,12 @@ using MapperLite.Demo.Profiles;
 // Create the MapperConfiguration
 var config = new MapperConfiguration();
 
-// Create the mapping profiles
-var userProfile = new UserProfile();
-var userAddressProfile = new UserAddressProfile();
-
-// Configure the profiles with the MapperConfiguration
-userProfile.Configure(config);
-userAddressProfile.Configure(config);
+// Create the mapping profiles and configure them
+List<MapperProfile> profiles = [
+    new UserProfile(),
+    new UserAddressProfile()
+];
+profiles.ForEach(profile => profile.Configure(config));
 
 // Create the Mapper instance with the configuration
 var mapper = new MapperLite.Mapper(config);
