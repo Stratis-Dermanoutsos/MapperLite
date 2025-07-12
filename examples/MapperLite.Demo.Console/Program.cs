@@ -32,5 +32,5 @@ var userDto = mapper.Map<UserReadDto>(user);
 // var userDto = mapper.Map<User, UserReadDto>(user); // Equal to the above line
 
 // Output the results
-Console.WriteLine(user);
-Console.WriteLine(userDto);
+Console.WriteLine("User Model:\t" + user);
+Console.WriteLine("User DTO:\t" + userDto);
