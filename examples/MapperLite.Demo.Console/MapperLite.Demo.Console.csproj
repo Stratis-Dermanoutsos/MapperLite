@@ -6,6 +6,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\src\MapperLite\MapperLite.csproj" />
+        <ProjectReference Include="..\MapperLite.Demo\MapperLite.Demo.csproj" />
     </ItemGroup>
 
 </Project>
