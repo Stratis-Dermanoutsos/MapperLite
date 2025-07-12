@@ -1,4 +1,5 @@
 ﻿using MapperLite.Configuration;
+using MapperLite.Demo.Helpers;
 using MapperLite.Demo.Models.Dto;
 using MapperLite.Demo.Models.Persistence;
 using MapperLite.Demo.Profiles;
@@ -16,16 +17,7 @@ profiles.ForEach(profile => profile.Configure(config));
 // Create the Mapper instance with the configuration
 var mapper = new MapperLite.Mapper(config);
 
-var user = new User
-{
-    Id = 1,
-    FirstName = "John",
-    LastName = "Doe",
-    Addresses = [
-        new UserAddress { Id = 1, Street = "Main St", Number = "123", City = "Anytown", ZipCode = "12345" },
-        new UserAddress { Id = 2, Street = "Elm St", City = "Othertown", ZipCode = "67890" }
-    ]
-};
+var user = UserGenerator.GenerateUser();
 
 var userDto = mapper.Map<UserReadDto>(user);
 // var userDto = mapper.Map<User, UserReadDto>(user); // Equal to the above line
