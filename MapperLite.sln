@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8D17ACA0-DBA1-4713-B030-28D8F6174AC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapperLite", "Src\MapperLite\MapperLite.csproj", "{DE4DC7DE-3375-4A2B-AF82-341268F35A56}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapperLite", "src\MapperLite\MapperLite.csproj", "{DE4DC7DE-3375-4A2B-AF82-341268F35A56}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution", "solution", "{C49E31C2-2287-42EC-86B1-732AD1ED26F8}"
     ProjectSection(SolutionItems) = preProject
