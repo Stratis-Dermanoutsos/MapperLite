@@ -8,7 +8,7 @@ public static class GetUser
 {
     public static RouteGroupBuilder MapGetUser(this RouteGroupBuilder group)
     {
-        group.MapGet("/{id:int}", (
+        group.MapGet("{id:int}", (
                 [FromRoute(Name = "id")] int id,
                 [FromServices] IMapper mapper) =>
         {
