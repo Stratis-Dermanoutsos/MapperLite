@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\MapperLite\MapperLite.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="RandomNameGeneratorLibrary" />
+    </ItemGroup>
+
+</Project>

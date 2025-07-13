@@ -1,0 +1,23 @@
+@WebApi_HostAddress = https://localhost:7224
+@UserId = 1
+@AddressId = 1
+
+GET {{WebApi_HostAddress}}/api/users/{{UserId}}
+Accept: application/json
+
+###
+
+GET {{WebApi_HostAddress}}/api/users
+Accept: application/json
+
+###
+
+GET {{WebApi_HostAddress}}/api/users/addresses/{{AddressId}}
+Accept: application/json
+
+###
+
+GET {{WebApi_HostAddress}}/api/users/addresses
+Accept: application/json
+
+###
