@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using MapperLite.Abstractions;
 
 namespace MapperLite.Configuration;
@@ -5,6 +6,7 @@ namespace MapperLite.Configuration;
 public class MapperConfiguration
 {
     private readonly Dictionary<(Type, Type), Delegate> _mappings = [];
+    private readonly Dictionary<(Type, Type), LambdaExpression> _projections = [];
 
     /// <summary>
     /// Creates a mapping from <typeparamref name="TSource"/> to <typeparamref name="TDestination"/>.
@@ -17,8 +19,13 @@ public class MapperConfiguration
     {
         CheckDuplicateMappingWithThrow<TSource, TDestination>();
 
+        // Register FromSource delegate
         _mappings[(typeof(TSource), typeof(TDestination))] =
             (Func<TSource, TDestination>)TDestination.FromSource;
+
+        // Register Projection Expression
+        _projections[(typeof(TSource), typeof(TDestination))] =
+            TDestination.Projection;
     }
 
     /// <summary>
@@ -76,10 +83,16 @@ public class MapperConfiguration
         return null;
     }
 
-    public Delegate? GetMap(Type sourceType, Type destType)
+    public Expression<Func<TSource, TDestination>>? GetProjection<TSource, TDestination>()
+        where TSource : class
+        where TDestination : class
     {
-        _mappings.TryGetValue((sourceType, destType), out var del);
-        return del;
+        if (_projections.TryGetValue((typeof(TSource), typeof(TDestination)), out var expr))
+        {
+            return expr as Expression<Func<TSource, TDestination>>;
+        }
+
+        return null;
     }
 
     /// <summary>
