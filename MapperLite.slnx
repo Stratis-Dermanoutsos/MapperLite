@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/examples/">
+    <Project Path="examples/MapperLite.Demo.Console/MapperLite.Demo.Console.csproj" />
+    <Project Path="examples/MapperLite.Demo.WebApi/MapperLite.Demo.WebApi.csproj" />
+    <Project Path="examples/MapperLite.Demo/MapperLite.Demo.csproj" />
+  </Folder>
+  <Folder Name="/solution/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/MapperLite/MapperLite.csproj" />
+  </Folder>
+</Solution>
