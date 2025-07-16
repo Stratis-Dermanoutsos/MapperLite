@@ -6,7 +6,7 @@ namespace MapperLite.Demo.Models.Dto;
 
 public partial class UserAddressReadDto : IReadMapper<UserAddress, UserAddressReadDto>
 {
-    public static Expression<Func<UserAddress, UserAddressReadDto>> Projection { get; } =
+    public static Expression<Func<UserAddress, UserAddressReadDto>> Projection =>
         source => new UserAddressReadDto
         {
             StreetFull = source.Street + (string.IsNullOrEmpty(source.Number) ? string.Empty : " " + source.Number),

@@ -13,8 +13,7 @@ public static class GetUsers
     {
         group.MapGet("/", (
                 [FromServices] AppDbContext dbContext,
-                [FromServices] MapperConfiguration mappingConfig,
-                [FromServices] IMapper mapper) =>
+                [FromServices] MapperConfiguration mappingConfig) =>
             {
                 var users = dbContext.Users
                     .AsNoTracking()
