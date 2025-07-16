@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using LinqKit;
 using MapperLite.Abstractions;
 using MapperLite.Demo.Models.Persistence;
 
@@ -10,13 +11,16 @@ public partial class UserReadDto : IReadMapper<User, UserReadDto>
         source => new UserReadDto
         {
             FirstName = source.FirstName,
-            LastName = source.LastName
+            LastName = source.LastName,
+            Addresses = source.Addresses
+                .AsQueryable()
+                .Select(UserAddressReadDto.Projection.Expand())
+                .ToList()
         };
 
     public static UserReadDto FromSource(User source)
     {
         var dto = Projection.Compile()(source);
-        dto.Addresses = [.. source.Addresses.Select(UserAddressReadDto.FromSource)];
 
         return dto;
     }

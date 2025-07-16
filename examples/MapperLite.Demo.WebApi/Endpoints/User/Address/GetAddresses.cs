@@ -18,7 +18,6 @@ public static class GetAddresses
             {
                 var addresses = dbContext.UserAddresses
                     .AsNoTracking()
-                    .Include(x => x.User)
                     .ProjectTo<UserAddress, UserAddressReadDto>(mappingConfig);
 
                 // Return the addresses as a response

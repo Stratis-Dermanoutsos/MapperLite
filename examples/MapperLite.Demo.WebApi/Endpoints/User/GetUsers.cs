@@ -1,5 +1,7 @@
+using MapperLite.Configuration;
 using MapperLite.Demo.Models.Dto;
 using MapperLite.Demo.WebApi.Database;
+using MapperLite.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,14 +13,15 @@ public static class GetUsers
     {
         group.MapGet("/", (
                 [FromServices] AppDbContext dbContext,
+                [FromServices] MapperConfiguration mappingConfig,
                 [FromServices] IMapper mapper) =>
             {
                 var users = dbContext.Users
                     .AsNoTracking()
-                    .Include(x => x.Addresses);
+                    .ProjectTo<Models.Persistence.User, UserReadDto>(mappingConfig);
 
                 // Return the users as a response
-                return Results.Ok(mapper.MapMany<UserReadDto>(users));
+                return Results.Ok(users);
             })
             .WithName("GetUsers")
             .WithSummary("Gets all users")
