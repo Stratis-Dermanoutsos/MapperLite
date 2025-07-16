@@ -3,7 +3,7 @@ using MapperLite.Configuration;
 
 namespace MapperLite.Extensions;
 
-public static class Queryable
+public static class QueryableExtensions
 {
     public static IQueryable<TDestination> ProjectTo<TSource, TDestination>(
         this IQueryable<TSource> source,

@@ -11,6 +11,5 @@
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/MapperLite/MapperLite.csproj" />
-    <Project Path="src/MapperLite.Extensions/MapperLite.Extensions.csproj" />
   </Folder>
 </Solution>
