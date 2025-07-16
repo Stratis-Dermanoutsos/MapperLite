@@ -1,6 +1,10 @@
-using MapperLite.Demo.Helpers;
+using MapperLite.Configuration;
 using MapperLite.Demo.Models.Dto;
+using MapperLite.Demo.Models.Persistence;
+using MapperLite.Demo.WebApi.Database;
+using MapperLite.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MapperLite.Demo.WebApi.Endpoints.User.Address;
 
@@ -8,17 +12,21 @@ public static class GetAddresses
 {
     public static RouteGroupBuilder MapGetAddresses(this RouteGroupBuilder group)
     {
-        group.MapGet("/", ([FromServices] IMapper mapper) =>
+        group.MapGet("/", (
+                [FromServices] AppDbContext dbContext,
+                [FromServices] MapperConfiguration mappingConfig) =>
             {
-                // Simulate fetching addresss from a database
-                var addresses = UserAddressGenerator.GenerateUserAddresses();
+                var addresses = dbContext.UserAddresses
+                    .AsNoTracking()
+                    .Include(x => x.User)
+                    .ProjectTo<UserAddress, UserAddressReadDto>(mappingConfig);
 
                 // Return the addresses as a response
-                return Results.Ok(mapper.MapMany<UserAddressReadDto>(addresses));
+                return Results.Ok(addresses);
             })
             .WithName("GetAddresses")
             .WithSummary("Gets all addresses")
-            .WithDescription("Retrieves addresses from the system.");
+            .WithDescription("Retrieves addresses from the database.");
 
         return group;
     }

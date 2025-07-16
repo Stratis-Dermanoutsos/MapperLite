@@ -64,3 +64,7 @@ nunit-*.xml
 
 # MacOS
 .DS_Store
+
+# SQLite
+*.db-shm
+*.db-wal
