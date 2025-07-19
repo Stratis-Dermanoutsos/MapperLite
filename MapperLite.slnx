@@ -9,6 +9,10 @@
     <File Path="Directory.Build.props" />
     <File Path="Directory.Packages.props" />
   </Folder>
+  <Folder Name="/solution/git/">
+    <File Path=".gitignore" />
+    <File Path=".github/CODEOWNERS" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="src/MapperLite/MapperLite.csproj" />
   </Folder>
